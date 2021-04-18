@@ -38,6 +38,25 @@ function! InsEmoji#Popup() abort
     call popup_menu(s:title, {'callback': 'Callback'})
 endfunction
 
+function! MenuEnter(num) abort
+    execute "bw"
+    call Callback('', a:num)
+endfunction
+
+function! InsEmoji#Menu() abort
+    silent new InsEmojiMenu
+    setlocal buftype=nofile bufhidden=wipe noswapfile nonumber buflisted cursorline
+    redraw
+    let s:title = []
+    for l:name in sort(keys(s:dict))
+        let l:append = s:emojing(l:name) . ' ' . l:name
+        call add(s:title, l:append)
+    endfor
+    call setline(1, s:title)
+    exec "nnoremap <silent> <buffer> <CR> :call MenuEnter(line('.'))<CR>"
+    setlocal nomodifiable
+endfunction
+
 function! InsEmoji#test()
   echo "hello, world"
 endfunction
