@@ -36,7 +36,7 @@ You can search like any other buffer.
 ## License
 This plugin is under the MIT-License.
 
-See also [LICENSE](LICENSE)
+See also [LICENSE](LICENSE).
 
 ## Author
 Laddge
