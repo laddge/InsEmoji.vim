@@ -1,5 +1,15 @@
 # InsEmoji.vim
 Insert Emoji to Vim
+
+## Installation
+Vundle:
+
+```
+Plugin 'laddge/InsEmoji.vim'
+```
+
+According to the plugin manager you use.
+
 ## Usage
 ### 1. Insert by name
 
