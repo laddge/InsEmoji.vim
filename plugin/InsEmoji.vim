@@ -14,7 +14,7 @@ command! -nargs=1 -complete=customlist,CompName InsEmoji call InsEmoji#Insert(<f
 command! InsEmojiPopup call InsEmoji#Popup()
 command! InsEmojiTest call InsEmoji#test()
 
-function! CompName(lead, line, pos)
+function! CompName(lead, line, pos) abort
     let s:json = ''
     for s:line in readfile(g:InsEmoji_jsonpath)
         let s:json = s:json . s:line
@@ -22,6 +22,8 @@ function! CompName(lead, line, pos)
     let s:dict = js_decode(s:json)
     return sort(keys(s:dict))
 endfunction
+
+imap <C-x><C-e> <ESC>:InsEmojiPopup<CR>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
