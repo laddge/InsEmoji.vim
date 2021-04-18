@@ -15,9 +15,13 @@ for s:line in readfile(g:InsEmoji_jsonpath)
 endfor
 let s:dict = js_decode(s:json)
 
-function! InsEmoji#Insert(name) abort
+function! s:emojing(name) abort
     execute 'let s:code = s:dict.' . a:name
-    execute 'normal! i' . nr2char(s:code)
+    return nr2char(s:code)
+endfunction
+
+function! InsEmoji#Insert(name) abort
+    execute 'normal! i' . s:emojing(a:name)
 endfunction
 
 function! Callback(id, result) abort
@@ -26,7 +30,12 @@ function! Callback(id, result) abort
 endfunction
 
 function! InsEmoji#Popup() abort
-    call popup_menu(sort(keys(s:dict)), {'callback': 'Callback'})
+    let s:title = []
+    for l:name in sort(keys(s:dict))
+        let l:append = s:emojing(l:name) . ' ' . l:name
+        call add(s:title, l:append)
+    endfor
+    call popup_menu(s:title, {'callback': 'Callback'})
 endfunction
 
 function! InsEmoji#test()
