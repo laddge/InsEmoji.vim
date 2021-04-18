@@ -10,7 +10,8 @@ set cpo&vim
 
 let g:InsEmoji_jsonpath = fnamemodify(expand('<sfile>:p:h'), ':h') . '/emoji/emoji.json'
 
-command! -nargs=1 -complete=customlist,CompName InsEmojiByName call InsEmoji#InsByName(<f-args>)
+command! -nargs=1 -complete=customlist,CompName InsEmoji call InsEmoji#Insert(<f-args>)
+command! InsEmojiPopup call InsEmoji#Popup()
 command! InsEmojiTest call InsEmoji#test()
 
 function! CompName(lead, line, pos)
@@ -19,7 +20,7 @@ function! CompName(lead, line, pos)
         let s:json = s:json . s:line
     endfor
     let s:dict = js_decode(s:json)
-    return keys(s:dict)
+    return sort(keys(s:dict))
 endfunction
 
 let &cpo = s:save_cpo
