@@ -17,7 +17,7 @@ According to the plugin manager you use.
 :InsEmoji <name>
 ```
 
-\<name\> is defined in ```emoji/emoji.json```
+\<name\> is defined in [emoji/emoji.json](emoji/emoji.json)
 
 ex:
 
