@@ -7,10 +7,12 @@ let g:loaded_InsEmoji = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+let g:InsEmoji_jsonpath = fnamemodify(expand('<sfile>:p:h'), ':h') . '/emoji/emoji.json'
+
 function! InsEmoji#InsByName(name)
     let s:jsonpath = expand('<sfile>:p:h') . '/emoji/emoji.json'
     let s:json = ''
-    for s:line in readfile(s:jsonpath)
+    for s:line in readfile(g:InsEmoji_jsonpath)
         let s:json = s:json . s:line
     endfor
     let s:dict = js_decode(s:json)
