@@ -16,7 +16,8 @@ endfor
 let s:dict = js_decode(s:json)
 
 function! s:emojing(name) abort
-    execute 'let s:code = s:dict.' . a:name
+    let l:name = toupper(a:name)
+    execute 'let s:code = s:dict.' . l:name
     return nr2char(s:code)
 endfunction
 
