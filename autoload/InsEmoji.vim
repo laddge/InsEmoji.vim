@@ -13,10 +13,9 @@ function! InsEmoji#InsByName(name)
     for s:line in readfile(s:jsonpath)
         let s:json = s:json . s:line
     endfor
-    let s:list = js_decode(s:json)
-    execute 'let s:code = s:list.' . a:name
-    execute 'normal! i' . nr2char(s:code) . ''
-
+    let s:dict = js_decode(s:json)
+    execute 'let s:code = s:dict.' . a:name
+    execute 'normal! i' . nr2char(s:code)
 endfunction
 
 function! InsEmoji#test()
