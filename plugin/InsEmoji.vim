@@ -23,7 +23,5 @@ function! CompName(lead, line, pos) abort
     return sort(keys(s:dict))
 endfunction
 
-imap <C-x><C-e> <ESC>:InsEmojiPopup<CR>
-
 let &cpo = s:save_cpo
 unlet s:save_cpo
