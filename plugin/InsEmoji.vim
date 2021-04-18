@@ -11,7 +11,6 @@ set cpo&vim
 let g:InsEmoji_jsonpath = fnamemodify(expand('<sfile>:p:h'), ':h') . '/emoji/emoji.json'
 
 command! -nargs=1 -complete=customlist,CompName InsEmoji call InsEmoji#Insert(<f-args>)
-command! InsEmojiPopup call InsEmoji#Popup()
 command! InsEmojiMenu call InsEmoji#Menu()
 command! InsEmojiTest call InsEmoji#test()
 

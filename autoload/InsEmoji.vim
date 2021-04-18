@@ -24,23 +24,10 @@ function! InsEmoji#Insert(name) abort
     execute 'normal! i' . s:emojing(a:name)
 endfunction
 
-function! Callback(id, result) abort
-    let l:name = sort(keys(s:dict))[a:result - 1]
-    call InsEmoji#Insert(l:name)
-endfunction
-
-function! InsEmoji#Popup() abort
-    let s:title = []
-    for l:name in sort(keys(s:dict))
-        let l:append = s:emojing(l:name) . ' ' . l:name
-        call add(s:title, l:append)
-    endfor
-    call popup_menu(s:title, {'callback': 'Callback'})
-endfunction
-
 function! MenuEnter(num) abort
     execute "bw"
-    call Callback('', a:num)
+    let l:name = sort(keys(s:dict))[a:num - 1]
+    call InsEmoji#Insert(l:name)
 endfunction
 
 function! InsEmoji#Menu() abort
